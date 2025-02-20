@@ -20,17 +20,14 @@ namespace EasyPoker_API.Models
 
         public Game CreateGame(List<string> playerNames)
         {
-            // 1. Create a new game instance
             var game = new Game
             {
                 Timestamp = DateTime.Now
             };
 
-            // 2. Initialize and shuffle deck
             var deck = InitializeDeck();
             ShuffleDeck(deck);
 
-            // 3. Deal hands to players
             var players = new List<Player>();
             var playerHands = new List<PlayerHand>();
 
@@ -54,13 +51,10 @@ namespace EasyPoker_API.Models
                 playerHands.Add(hand);
             }
 
-            // 4. Store remaining cards
             var remainingCards = deck.Select(card => new RemainingCard { Game = game, Card = card, GameId = game.Id }).ToList();
 
-            // 5. Determine the winner
             var winner = DetermineWinner(playerHands);
 
-            // 6. Assign results
             game.Players = players;
             game.PlayerHands = playerHands;
             game.RemainingCards = remainingCards;
