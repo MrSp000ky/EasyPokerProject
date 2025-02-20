@@ -1,6 +1,5 @@
 <template>
   <div class="container">
-    <!-- Registration Form View -->
     <div v-if="!gameResult">
       <h2 class="title">Register Players</h2>
       <div v-for="(player, index) in players" :key="index" class="player-card">
@@ -30,7 +29,7 @@
       </div>
     </div>
 
-    <!-- Game Results View -->
+    <!-- Winner -->
     <div v-else>
       <h2 class="title">Game Results</h2>
       <p class="text-center" style="font-size: 20px;">
@@ -78,7 +77,7 @@ export default {
       }
     },
     goBack() {
-      // Go back to the registration form so players can be edited
+      // Register players again
       this.gameResult = null;
     },
   },
@@ -113,14 +112,12 @@ export default {
     box-shadow: 2px 2px 10px rgba(255, 255, 255, 0.1);
   }
   
-  /* Label Styling */
   .player-label {
     margin-right: 10px;
     font-size: 20px;
     color: white;
   }
   
-  /* Input Field - Blending with Card */
   .custom-input {
     font-size: large;
     border: none;
@@ -132,12 +129,10 @@ export default {
     transition: border-color 0.3s ease-in-out;
   }
   
-  /* Focus Effect on Input */
   .custom-input:focus {
     border-bottom: 2px solid white;
   }
   
-  /* Start Game Button */
   .start-button {
     width: 80%;
     font-size: 1.5rem;
